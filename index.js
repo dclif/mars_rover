@@ -1,4 +1,6 @@
-function marsRover(URCoords, startPos, directions){
+function marsRover(URCoords, start1, dir1, start2, dir2){
+    let ans = '';
+        function navigate(startPos, directions){
         const compass = ['N','E','S','W']
         let direction = compass.indexOf(startPos[2])
         let position = [startPos[0], startPos[1]];
@@ -31,9 +33,12 @@ function marsRover(URCoords, startPos, directions){
             }
             
          });
-         return [...position, compass[direction]].join(' ');
-
+         ans+= [...position, compass[direction]].join(' ') + "\n" ;
+}
+    navigate(start1,dir1)
+    navigate(start2,dir2)
+    return ans;
 }
 
-console.log(marsRover('55','33E','LMMMMMLMMMMMM'))
 module.exports = marsRover;
+

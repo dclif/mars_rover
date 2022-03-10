@@ -31,6 +31,9 @@ function marsRover(URCoords, startPos, directions){
             }
             
          });
-         return [...position, compass[direction]].toString();
+         return [...position, compass[direction]].join(' ');
 
 }
+
+console.log(marsRover('55','33E','MMRMMRMRRM'))
+module.exports = marsRover;

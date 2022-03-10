@@ -17,16 +17,16 @@ function marsRover(URCoords, startPos, directions){
             else if(element === "R" && direction === 3){
                 direction = 0;
             }
-            else if(element === "M" && direction === 1){
+            else if(element === "M" && direction === 1 && position[0] < URCoords[0]){
                 position[0]++;
             }
-            else if(element === "M" && direction === 3){
+            else if(element === "M" && direction === 3 && position[0] > 0){
                 position[0]--;
             }
-            else if(element === "M" && direction === 0){
+            else if(element === "M" && direction === 0 && position[1] < URCoords[1]){
                 position[1]++;
             }
-            else if(element === "M" && direction === 2){
+            else if(element === "M" && direction === 2 && position[1] > 0){
                 position[1]--;
             }
             
@@ -35,5 +35,5 @@ function marsRover(URCoords, startPos, directions){
 
 }
 
-console.log(marsRover('55','33E','MMRMMRMRRM'))
+console.log(marsRover('55','33E','LMMMMMLMMMMMM'))
 module.exports = marsRover;

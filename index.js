@@ -1,4 +1,10 @@
 function marsRover(URCoords, start1, dir1, start2, dir2){
+    if (URCoords === undefined) throw new Error("Please provide the grid size");
+    if (start1 === undefined) throw new Error("Please provide the gstart coordinates for your first rover");
+    if (dir1 === undefined) throw new Error("Please provide the directions for your first rover.");
+    if (start2 === undefined) throw new Error("Please provide the the start coordinates for your second rover");
+    if (dir2 === undefined) throw new Error("Please provide the directions for your second rover.");
+
         let finalCoordinates = '';
         function navigate(startPos, directions){
         const compass = ['N','E','S','W']
@@ -37,8 +43,10 @@ function marsRover(URCoords, start1, dir1, start2, dir2){
 }
     navigate(start1,dir1)
     navigate(start2,dir2)
+    console.log(arguments.length === 5)
     return finalCoordinates;
 }
+
 
 module.exports = marsRover;
 

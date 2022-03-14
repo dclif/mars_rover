@@ -1,15 +1,17 @@
-function marsRover(URCoords, start1, dir1, start2, dir2){
+function marsRover(URCoords: string, start1: string, dir1: string, ...otherRovers: string[]){
     if (URCoords === undefined) throw new Error("Please provide the grid size");
     if (start1 === undefined) throw new Error("Please provide the gstart coordinates for your first rover");
     if (dir1 === undefined) throw new Error("Please provide the directions for your first rover.");
-    if (start2 === undefined) throw new Error("Please provide the the start coordinates for your second rover");
-    if (dir2 === undefined) throw new Error("Please provide the directions for your second rover.");
+    
+        
+        let rovers: Array<string> = [...arguments].slice(1);
+        let finalCoordinates: string = '';
 
-        let finalCoordinates = '';
-        function navigate(startPos, directions){
-        const compass = ['N','E','S','W']
-        let direction = compass.indexOf(startPos[2])
-        let position = [startPos[0], startPos[1]];
+        function navigate(startPos: string, directions: string){
+        
+        const compass: Array<string> = ['N','E','S','W']
+        let direction: number = compass.indexOf(startPos[2])
+        let position: number[] = [+startPos[0], +startPos[1]];
 
         directions.split('').forEach((element) => { 
         
@@ -25,13 +27,13 @@ function marsRover(URCoords, start1, dir1, start2, dir2){
             else if(element === "R" && direction === 3){
                 direction = 0;
             }
-            else if(element === "M" && direction === 1 && position[0] < URCoords[0]){
+            else if(element === "M" && direction === 1 && position[0] < +URCoords[0]){
                 position[0]++;
             }
             else if(element === "M" && direction === 3 && position[0] > 0){
                 position[0]--;
             }
-            else if(element === "M" && direction === 0 && position[1] < URCoords[1]){
+            else if(element === "M" && direction === 0 && position[1] < +URCoords[1]){
                 position[1]++;
             }
             else if(element === "M" && direction === 2 && position[1] > 0){
@@ -41,9 +43,12 @@ function marsRover(URCoords, start1, dir1, start2, dir2){
          });
          finalCoordinates+= [...position, compass[direction]].join(' ') + "\n" ;
 }
-    navigate(start1,dir1)
-    navigate(start2,dir2)
-    console.log(arguments.length === 5)
+
+
+    for(let rover: number = 0; rover < rovers.length; rover+=2){
+        navigate(rovers[rover],rovers[rover+1])
+    }
+    
     return finalCoordinates;
 }
 

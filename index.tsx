@@ -2,7 +2,7 @@ function marsRover(URCoords: string, start1: string, dir1: string, ...otherRover
     if (URCoords === undefined) throw new Error("Please provide the grid size");
     if (start1 === undefined) throw new Error("Please provide the gstart coordinates for your first rover");
     if (dir1 === undefined) throw new Error("Please provide the directions for your first rover.");
-    
+    if(arguments.length % 2 === 0) throw new Error("Please provide the directions for your rover")
         
         let rovers: Array<string> = [...arguments].slice(1);
         let finalCoordinates: string = '';
